@@ -35,7 +35,7 @@ function PersonalForm() {
         <div className="mt-3">
             <h3>Personal Information:</h3>
             <p><strong>Name:</strong> {personalInfo.name || 'N/A'}</p>
-            <p><strong>Income (Yearly):</strong> {personalInfo.income || 'N/A'}</p>
+            <p><strong>Income (Yearly):</strong> {"£" + parseInt((personalInfo.income || 'N/A')).toLocaleString()}</p>
             <p><strong>Credit Score Provider:</strong> {credit_providers[personalInfo.providerNumber] || 'N/A'}</p>
             <p><strong>Credit Score:</strong> {personalInfo.creditScore || 'N/A'}</p>
         </div>
