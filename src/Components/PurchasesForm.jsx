@@ -5,6 +5,7 @@ import Table from 'react-bootstrap/Table';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 import AddPurchaseModal from './AddPurchaseModal';
+import ExpandedPurchaseModal from './ExpandedPurchaseModal';
 import { Accordion } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { useEffect } from 'react';
@@ -12,6 +13,7 @@ import { useEffect } from 'react';
 function PurchasesForm() {
     const [purchases, setPurchases] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [showExpanded, setShowExpanded] = useState(false);
 
     // When clicking Add Purchase button, show the modal
     const addPurchase = () => {
@@ -50,6 +52,13 @@ function PurchasesForm() {
                 Add Purchase
             </Button>
 
+                {/* Aligned to the right */}
+            <Button variant="secondary" style={{ float: 'right' }} onClick={() => setShowExpanded(true)}>
+                View History
+            </Button>
+
+            <ExpandedPurchaseModal show={showExpanded} showHandler={setShowExpanded} />
+
             <AddPurchaseModal show={showModal} showHandler={setShowModalhandler} purchaseAddingHandler={handlePurchaseAdding} />
 
             <Accordion defaultActiveKey="0">
@@ -65,7 +74,8 @@ function PurchasesForm() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {purchases.map((purchase, index) => (
+                                    {/* Map through the 3 most recent purchases */}
+                                    {purchases.slice(-3).map((purchase, index) => (
                                         <tr key={index}>
                                             <td>{purchase.amount}</td>
                                             <td>{purchase.method}</td>
