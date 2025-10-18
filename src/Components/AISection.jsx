@@ -62,11 +62,11 @@ Cards:`;
 }
 
 function AISection() {
-  const [summary, setSummary] = useState(() => (
+  const [summary, setSummary] = useState(
     <Spinner animation="grow" role="status">
       <span className="visually-hidden">Loading...</span>
     </Spinner>
-  ));
+  );
 
   const API_KEY = import.meta.env.VITE_GEMINI_KEY;
   const ai = new GoogleGenAI({ apiKey: API_KEY });
@@ -83,7 +83,7 @@ function AISection() {
       });
 
       let [overall, suggestions] = response.text.split('\n\n');
-      setSummary(() => ({overall}<br><br>{suggestions}));
+      setSummary(<div>{overall}<br /><br />{suggestions}</div>);
 
       console.log(response.text);
     }
@@ -95,7 +95,7 @@ function AISection() {
     <div>
       <h1>AI Section</h1>
 
-      {(summary())}
+      {summary}
     </div>
   )
 }
