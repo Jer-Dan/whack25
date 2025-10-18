@@ -68,11 +68,11 @@ function CreditForm() {
                                     <Card.Title>{card.name}</Card.Title>
                                     <Card.Text>
                                         Company: {card.company} <br />
-                                        Max Credit: {card.maxCredit} <br />
-                                        Current Balance: {card.currentBalance} <br />
+                                        Max Credit: £{card.maxCredit} <br />
+                                        Current Balance: £{card.currentBalance} <br />
                                         Statement Balance Day: {card.statementBalanceDay} <br />
                                         Due Date: {card.dueDate} <br />
-                                        Minimum Fee Payment: {card.minFeePayment} <br />
+                                        Minimum Fee Payment: £{card.minFeePayment} <br />
                                     </Card.Text>
                                     <Button variant="primary">Edit</Button>
                                     <Button variant="primary" onClick={() => handleCardDeleting(card.name)}>Delete</Button>
