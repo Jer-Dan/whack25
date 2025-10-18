@@ -1,4 +1,6 @@
 import React from 'react'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import Table from 'react-bootstrap/Table';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
@@ -37,7 +39,12 @@ function PurchasesForm() {
 
     return (
         <div>
-            <h1>Purchases Form</h1>
+            <OverlayTrigger
+                placement="right"
+                overlay={<Tooltip>Record of your purchases made using credit cards</Tooltip>}
+            >
+                <h1>Purchases Form</h1>
+            </OverlayTrigger>
 
             <Button variant="primary" onClick={addPurchase}>
                 Add Purchase

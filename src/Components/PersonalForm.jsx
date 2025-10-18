@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap';
 import AddPersonModal from './AddPersonModal';
 
 function PersonalForm() {
+    // state to manage if personal info is already added
+    const [infoAdded, setInfoAdded] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [personalInfo, setPersonalInfo] = useState({});
 
@@ -12,12 +14,16 @@ function PersonalForm() {
         const storedInfo = JSON.parse(localStorage.getItem("personalInfo"));
         if (storedInfo) {
             setPersonalInfo(storedInfo);
+            setInfoAdded(true);
         }
     }, []);
 
   return (
     <div>
-        <Button variant="primary" onClick={() => setShowModal(true)}>Add Personal Information</Button>
+        {/* // Hide the button if info is already added */}
+        {!infoAdded && (
+            <Button variant="primary" onClick={() => setShowModal(true)}>Add Personal Information</Button>
+        )}
         {showModal && <AddPersonModal show={showModal} onHide={() => setShowModal(false)} />}
 
         <div className="mt-3">

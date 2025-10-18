@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 function CreditForm() {
     const [cards, setCards] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    // When lcicking Add Credit Card button, show the modal
+    // When clicking Add Credit Card button, show the modal
     const addCard = () => {
         setShowModal(true);
     }
@@ -24,13 +24,6 @@ function CreditForm() {
             const updated = [...prev, card];
             localStorage.setItem("cards", JSON.stringify(updated));
             console.log('saved cards', updated);
-            // notify other parts of the app that cards changed
-            try {
-                window.dispatchEvent(new CustomEvent('cards-updated', { detail: updated }));
-            } catch (e) {
-                // ignore if dispatch fails in some environments
-                console.warn('cards-updated dispatch failed', e);
-            }
             return updated;
         });
     }
@@ -39,11 +32,6 @@ function CreditForm() {
         setCards(prev => {
             const updated = prev.filter(card => card.name !== name);
             localStorage.setItem("cards", JSON.stringify(updated));
-            try {
-                window.dispatchEvent(new CustomEvent('cards-updated', { detail: updated }));
-            } catch (e) {
-                console.warn('cards-updated dispatch failed', e);
-            }
             return updated;
         });
     }
@@ -52,11 +40,6 @@ function CreditForm() {
         setCards(prev => {
             const updated = prev.map(card => card.name === name ? updatedCard : card);
             localStorage.setItem("cards", JSON.stringify(updated));
-            try {
-                window.dispatchEvent(new CustomEvent('cards-updated', { detail: updated }));
-            } catch (e) {
-                console.warn('cards-updated dispatch failed', e);
-            }
             return updated;
         });
     }
