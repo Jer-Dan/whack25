@@ -5,6 +5,7 @@ import AISection from './Components/AISection'
 import PaymentsForm from './Components/PaymentsForm'
 import PurchasesForm from './Components/PurchasesForm'
 import ThemeToggle from './Components/ThemeToggle'
+import ScoreWidget from './Components/ScoreWidget'
 
 const App = () => {
     return (
@@ -23,6 +24,10 @@ const App = () => {
 
             <div id='AISectionDiv'>
                 <AISection />
+            </div>
+
+            <div id='ScoreWidgetDiv'>
+                <ScoreWidget score={85} />
             </div>
             <ThemeToggle />
         </div>
