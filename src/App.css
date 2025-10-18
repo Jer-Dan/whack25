@@ -24,6 +24,7 @@ html {
 }
 
 #DataSectionDiv {
+    transition: max-height 0.3s ease;
     grid-column: 1;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
@@ -33,13 +34,8 @@ html {
 }
 
 #AISectionDiv {
-<<<<<<< Updated upstream
-    grid-column: 3;
-=======
     transition: max-height 0.3s ease;
-    align-self: flex-start;
-    flex-basis: 33%;
->>>>>>> Stashed changes
+    grid-column: 3;
     max-height: 40vh;
     overflow: auto;
     padding: 1vh;
@@ -50,7 +46,7 @@ html {
 
 /* Hovering over AI Section makes it larger */
 #AISectionDiv:hover {
-    max-height: 70vh;
+    max-height: 81vh;
     transition: max-height 0.3s ease;
 }
 
@@ -59,6 +55,7 @@ html {
 }
 
 #PaymentsSectionDiv {
+    transition: all 0.3s ease;
     grid-column: 2;
     max-height: 55vh;
     overflow: auto;
@@ -74,6 +71,7 @@ html {
 }
 
 #PurchasesSectionDiv {
+    transition: all 0.3s ease;
     grid-column: 2;
     max-height: 55vh;
     overflow: auto;
