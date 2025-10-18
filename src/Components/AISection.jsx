@@ -1,20 +1,38 @@
 import { React, useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import "../Styles/AISection.css";
+import Button from 'react-bootstrap/Button';
 
 import { GoogleGenAI } from '@google/genai';
 
 const credit_providers = ["Experian", "Equifax", "TransUnion"];
 const cards = JSON.parse(localStorage.getItem("cards"));
 
-// Test data
+// Get personal info from local storage
+const personalInfo = JSON.parse(localStorage.getItem("personalInfo")) || {};
+const payments = JSON.parse(localStorage.getItem("payments")) || [];
+const purchases = JSON.parse(localStorage.getItem("purchases")) || [];
+
+// get total balance from all cards
+const total_balance = () => {
+    let total = 0;
+    for (let card of cards) {
+        total += parseFloat(card.currentBalance);
+    }
+
+    return total;
+}
+
+// Real data
 let info = {
-  income: 32000,
-  credit_score: [870, 0],
-  credit_utilisation: 25,
-  total_balance: 600,
+  income: personalInfo.income || 32000,
+  credit_score: [personalInfo.creditScore || 870, 0],
+  credit_utilisation: personalInfo.creditUtilisation || 25,
+  total_balance: total_balance(),
   history_length: 50,
   cards: cards,
+  payments: payments,
+  purchases: purchases
 }
 
 function genPrompt(info) {
@@ -47,17 +65,18 @@ Cards:`;
 }
 
 function AISection() {
-  const [summary, setSummary] = useState(
-    <Spinner animation="grow" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
-  );
+  const [summary, setSummary] = useState(null);
 
   const API_KEY = import.meta.env.VITE_GEMINI_KEY;
   const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-  useEffect(() => {
-    async function genSummary() {
+  async function genSummary() {
+    setSummary(
+        <Spinner animation="grow" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </Spinner>
+    );
+
       let prompt = genPrompt(info);
 
       console.log(prompt);
@@ -71,8 +90,10 @@ function AISection() {
       setSummary(<div>{overall}<br /><br />{suggestions}</div>);
 
       console.log(response.text);
-    }
+  }
 
+  useEffect(() => {
+    
     genSummary();
   }, []);
 
@@ -80,6 +101,7 @@ function AISection() {
     <div>
       <h1>AI Section</h1>
 
+      <Button variant="primary" onClick={() => genSummary()}>Regenerate Summary</Button>
       {summary}
     </div>
   )

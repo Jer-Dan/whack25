@@ -11,14 +11,15 @@ const App = () => {
             <div id='DataSectionDiv'>
                 <DataSection />
             </div>
-
-            <div id="PaymentsSectionDiv">
-                <PaymentsForm />
+            <div id="PaymentsColumn">
+                <div id="PaymentsSectionDiv">
+                    <PaymentsForm />
+                </div>
+                <div id="PurchasesSectionDiv">
+                    <PurchasesForm />
+                </div>
             </div>
-            <div id="PurchasesSectionDiv">
-                <PurchasesForm />
-            </div>
-
+            
             <div id='AISectionDiv'>
                 <AISection />
             </div>

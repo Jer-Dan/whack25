@@ -3,6 +3,7 @@ import { useState } from 'react'
 import MoneyTypeForm from './MoneyTypeForm'
 import '../Styles/DataSection.css'
 import Dropdown from 'react-bootstrap/Dropdown';
+import PersonalForm from './PersonalForm';
 
 function DataSection() {
 
@@ -13,6 +14,8 @@ function DataSection() {
             <h1 id='DataSectionTitle'>
                 Your Data
             </h1>
+
+            <PersonalForm />
 
             <MoneyTypeForm type={FormType} />
         </div>
