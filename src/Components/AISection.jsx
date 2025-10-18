@@ -23,25 +23,8 @@ const total_balance = () => {
     return total;
 }
 
-// Real data
-let info = {
-  income: personalInfo.income || 32000,
-  credit_score: [personalInfo.creditScore || 870, 0],
-  credit_utilisation: personalInfo.creditUtilisation || 25,
-  total_balance: total_balance(),
-  history_length: 50,
-  cards: cards,
-  payments: payments,
-  purchases: purchases
-}
-
 function genPrompt(info) {
-  let prompt = `You are taking the role of a financial advisor. I will provide to you information about your client's income and their credit history, including information about their credit score and cards.
-You are to provide a paragraph analysing the effectiveness of their financial habits, and another paragraph giving suggestions and changing their habits as you think would improve it.
-Compare their habits to the average person within their income range.
-If no entries are provided in a section, don't comment on it. Don't use any kind of greetings, just get straight into it.
-Use concise wording, but provide the relevant details. Separate the paragraphs with two lines. You are talking directly to the client, so refer to them directly as 'you'.
-Instead of referring to amounts of money as 'x GBP', refer to them as '£x'. Do not refer to the cards by their numbers (e.g. 'Card 1'), only refer to them by their names.`;
+  let prompt = "You are taking the role of a financial advisor. I will provide to you information about your client's income and their credit history, including information about their credit score, cards, payments and purchases. You are to provide a paragraph analysing the effectiveness of their financial habits, and another paragraph giving suggestions and changing their habits as you think would improve it. Compare their habits to the average person within their income range. If no entries are provided in a section, don't comment on it. Don't use any kind of greetings, just get straight into it. Use concise wording, but provide the relevant details. Separate the paragraphs with two lines. You are talking directly to the client, so refer to them directly as 'you'. Instead of referring to amounts of money as 'x GBP', refer to them as '£x'. Do not refer to the cards by their numbers (e.g. 'Card 1'), only refer to them by their names. Similarly, do not refer to payments and purchases by their numbers, but if necessary refer to individual instances explicitly (e.g. \"The payment of x pounds\"";
 
   prompt += `\nIncome: ${info.income} GBP/year
 Credit score: ${info.credit_score[0]} using ${credit_providers[info.credit_score[1]]}
@@ -50,15 +33,32 @@ Total balance: ${info.total_balance} GBP
 History length: ${info.history_length} months
 Cards:`;
 
+  let cards = info.cards;
   for (let i = 0; i < cards.length; i++) {
-    prompt += `\n\t - Card ${i+1}:`;
-    prompt += `\n\t\t - Card name: ${cards[i].name}`;
-    prompt += `\n\t\t - Company: ${cards[i].company}`;
-    prompt += `\n\t\t - Max credit: ${cards[i].maxCredit} GBP`;
-    prompt += `\n\t\t - Current balance: ${cards[i].currentBalance} GBP`;
-    prompt += `\n\t\t - Statement balance day: ${cards[i].statementBalanceDay}`
-    prompt += `\n\t\t - Due date: Day ${cards[i].dueDate} of the month`;
-    prompt += `\n\t\t - Minimum fee: ${cards[i].minFeePayment} GBP`
+    prompt += `\n\t- Card ${i+1}:`;
+    prompt += `\n\t\t- Card name: ${cards[i].name}`;
+    prompt += `\n\t\t- Company: ${cards[i].company}`;
+    prompt += `\n\t\t- Max credit: ${cards[i].maxCredit} GBP`;
+    prompt += `\n\t\t- Current balance: ${cards[i].currentBalance} GBP`;
+    prompt += `\n\t\t- Statement balance day: ${cards[i].statementBalanceDay}`
+    prompt += `\n\t\t- Due date: Day ${cards[i].dueDate} of the month`;
+    prompt += `\n\t\t- Minimum fee: ${cards[i].minFeePayment} GBP`
+  }
+
+  let payments = info.payments;
+  prompt += "\nPayments:";
+  for (let i = 0; i < payments.length; i++) {
+    prompt += `\n\t- Payment`
+    prompt += `\n\t\t- Amount: ${payments[i].amount} GBP`;
+    prompt += `\n\t\t- Card: ${payments[i].method}`;
+  }
+
+  let purchases = info.purchases;
+  prompt += "\nPurchases:";
+  for (let i = 0; i < purchases.length; i++) {
+    prompt += `\n\t- Payment`
+    prompt += `\n\t\t- Amount: ${purchases[i].amount} GBP`;
+    prompt += `\n\t\t- Card: ${purchases[i].method}`;
   }
 
   return prompt;
@@ -77,31 +77,45 @@ function AISection() {
         </Spinner>
     );
 
-      let prompt = genPrompt(info);
+    // Real data
+    let info = {
+      income: personalInfo.income || 32000,
+      credit_score: [personalInfo.creditScore || 870, 0],
+      credit_utilisation: personalInfo.creditUtilisation || 25,
+      total_balance: total_balance(),
+      history_length: 50,
+      cards: cards,
+      payments: payments,
+      purchases: purchases
+    }
 
-      console.log(prompt);
 
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash-lite",
-        contents: prompt,
-      });
+    let prompt = genPrompt(info);
 
-      let [overall, suggestions] = response.text.split('\n\n');
-      setSummary(<div>{overall}<br /><br />{suggestions}</div>);
+    console.log(prompt);
 
-      console.log(response.text);
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash-lite",
+      contents: prompt,
+    });
+
+    let [overall, suggestions] = response.text.split('\n\n');
+    setSummary(<div>{overall}<br /><br />{suggestions}</div>);
+
+    console.log(response.text);
   }
 
   useEffect(() => {
-    
     genSummary();
   }, []);
 
   return (
     <div>
-      <h1>AI Section</h1>
+      <div>
+        <h1>AI Section</h1>
+        <Button variant="primary" onClick={() => genSummary()}>Regenerate Summary</Button>
+      </div>
 
-      <Button variant="primary" onClick={() => genSummary()}>Regenerate Summary</Button>
       {summary}
     </div>
   )
