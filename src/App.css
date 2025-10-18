@@ -2,15 +2,18 @@
     font-family: "Montserrat", sans-serif;
 }
 
+html, body, #root {
+    height: 100%;
+}
+
 html {
     background-color: rgb(250, 250, 250);
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
-    height: 100%;
 }
 
 body {
-
+    overflow: hidden;
     margin: 1ex;
 }
 
@@ -65,4 +68,10 @@ body {
     flex-grow: 1;
     margin-left: 1em;
     overflow: scroll;
+}
+
+.section-scroll {
+    flex: 1 1 auto;
+    overflow: auto; /* actual scrolling happens here */
+    -webkit-overflow-scrolling: touch;
 }

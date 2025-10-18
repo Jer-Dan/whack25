@@ -1,11 +1,20 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
-import { Button } from 'react-bootstrap';   
+import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 
-function AddCardModal({ show, showHandler }) {
-    const onSubmit = () => {
-        // set show to false
+function AddCardModal({ show, showHandler, cardAddingHandler }) {
+    const onSubmit = ({ name, company, maxCredit, currentBalance, statementBalanceDay, dueDate, minFeePayment }) => {
+        // save card data to parent component via handler
+        cardAddingHandler({
+            name,
+            company,
+            maxCredit,
+            currentBalance,
+            statementBalanceDay,
+            dueDate,
+            minFeePayment
+        });
         showHandler(false);
     }
 
@@ -17,8 +26,7 @@ function AddCardModal({ show, showHandler }) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>Enter the details of the new card.</p>
-                    <h2>Credit Form</h2>
+                    <p>Enter the details of the card.</p>
                     <form>
                         <div className="form-group">
                             <label htmlFor="amount">Card Name</label>
@@ -38,10 +46,6 @@ function AddCardModal({ show, showHandler }) {
                             <input type="number" id="amount" className="form-control" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="amount">Interest (optional)</label>
-                            <input type="number" id="amount" className="form-control" />
-                        </div>
-                        <div className="form-group">
                             {/* 31 days scroller */}
                             <label htmlFor="statementBalanceDay">Statement Balance Day</label>
                             <input type="number" id="statementBalanceDay" className="form-control" />
@@ -55,46 +59,14 @@ function AddCardModal({ show, showHandler }) {
                             <label htmlFor="amount">Minimum Fee Payment (note)</label>
                             <input type="number" id="amount" className="form-control" />
                         </div>
-                        <button type="submit" onClick={() => onSubmit(false)} className="btn btn-primary">Submit</button>
                     </form>
-
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td colSpan={2}>Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </Table>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary">Close</Button>
-                    <Button variant="primary">Save changes</Button>
+                    <Button variant="primary" onClick={() => onSubmit({ name: document.getElementById("amount").value, company: document.getElementById("description").value, maxCredit: document.getElementById("amount").value, currentBalance: document.getElementById("amount").value, statementBalanceDay: document.getElementById("statementBalanceDay").value, dueDate: document.getElementById("amount").value, minFeePayment: document.getElementById("amount").value })}>Save changes</Button>
                 </Modal.Footer>
             </Modal.Dialog>
-        </Modal>
+        </Modal >
     )
 }
 
