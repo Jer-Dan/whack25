@@ -1,5 +1,7 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 import AddPaymentModal from './AddPaymentModal';
@@ -37,7 +39,12 @@ function PaymentsForm() {
 
     return (
         <div>
-            <h1>Payments Form</h1>
+            <OverlayTrigger
+                placement="right"
+                overlay={<Tooltip>Paying off your credit (debt)</Tooltip>}
+            >
+                <h1>Payments Form</h1>
+            </OverlayTrigger>
 
             <Button variant="primary" onClick={addPayment}>
                 Add Payment

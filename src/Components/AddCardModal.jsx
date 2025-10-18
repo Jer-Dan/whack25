@@ -2,6 +2,8 @@ import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 function AddCardModal({ show, showHandler, cardAddingHandler, editedCard }) {
     const onSubmit = ({ name, company, maxCredit, currentBalance, statementBalanceDay, dueDate, minFeePayment }) => {
@@ -47,12 +49,23 @@ function AddCardModal({ show, showHandler, cardAddingHandler, editedCard }) {
                         </div>
                         <div className="form-group">
                             {/* 31 days scroller */}
-                            <label htmlFor="statementBalanceDay">Statement Balance Day</label>
+                            <OverlayTrigger
+                                placement="right"
+                                overlay={<Tooltip>the day your statement balance is due each month</Tooltip>}
+                            >
+                                <label htmlFor="statementBalanceDay">Statement Balance Day</label>
+                            </OverlayTrigger>
+
                             <input type="number" id="statementBalanceDay" className="form-control" />
 
                         </div>
                         <div className="form-group">
-                            <label htmlFor="dueDate">Due Date</label>
+                            <OverlayTrigger
+                                placement="right"
+                                overlay={<Tooltip>the day your payment is due each month</Tooltip>}
+                            >
+                                <label htmlFor="dueDate">Due Date</label>
+                            </OverlayTrigger>
                             <input type="number" id="dueDate" className="form-control" />
                         </div>
                         <div className="form-group">

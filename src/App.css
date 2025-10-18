@@ -52,6 +52,7 @@ html {
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
+    min-height: 17vh;
 }
 
 #PurchasesSectionDiv {
@@ -63,6 +64,7 @@ html {
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
+    min-height: 17vh;
 }
 
 #PaymentsColumn {
@@ -73,3 +75,84 @@ html {
     gap: 1ex;
     margin-left: 1ex; /* spacing from the data column */
 }
+
+/* Theme variables */
+:root {
+    --bg: #fafafa;
+    --panel-bg: #fff;
+    --text: #111827;
+    --muted: #6b7280;
+    --accent: rgb(145, 199, 237);
+}
+
+.theme-dark {
+    --bg: #0b1220;
+    --panel-bg: #0f1724;
+    --text: #e6eef8;
+    --muted: #9aa6b2;
+    --accent: rgb(72, 129, 175);
+}
+
+html, body, #root {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* Panel backgrounds should use variable */
+#DataSectionDiv, #AISectionDiv, #PaymentsSectionDiv, #PurchasesSectionDiv {
+    background: var(--panel-bg);
+}
+
+/* Theme toggle button fixed bottom-right */
+#ThemeToggleButton {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: inline-grid;
+    place-items: center;
+    border: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.06));
+    box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 120ms linear, background 120ms linear;
+}
+
+#ThemeToggleButton:hover { transform: translateY(-2px); }
+
+/* Themed tables (Bootstrap table overrides) */
+.table {
+    color: var(--text);
+    background-color: transparent;
+    border-color: rgba(0,0,0,0.08);
+}
+
+.table thead th {
+    background: transparent;
+    color: var(--text);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.table tbody tr td {
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,0.02);
+}
+
+.theme-dark .table thead th {
+    border-bottom-color: rgba(255,255,255,0.06);
+}
+
+.theme-dark .table tbody tr td {
+    border-top-color: rgba(255,255,255,0.03);
+}
+
+.theme-dark .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255,255,255,0.02);
+}
+
