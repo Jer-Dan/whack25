@@ -63,7 +63,7 @@ function CreditForm() {
                     <Accordion.Item eventKey={index.toString()} key={index}>
                         <Accordion.Header>{card.name} - {card.company}</Accordion.Header>
                         <Accordion.Body>
-                            <Card style={{ width: '18rem' }}>
+                            <Card style={{ width: '18rem', maxHeight: '67vh', overflowY: 'scroll' }}>
                                 <Card.Body>
                                     <Card.Title>{card.name}</Card.Title>
                                     <Card.Text>
