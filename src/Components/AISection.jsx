@@ -80,7 +80,7 @@ function AISection() {
     // Real data
     let info = {
       income: personalInfo.income || 32000,
-      credit_score: [personalInfo.creditScore || 870, 0],
+      credit_score: [personalInfo.creditScore || 870, personalInfo.providerNumber],
       credit_utilisation: personalInfo.creditUtilisation || 25,
       total_balance: total_balance(),
       history_length: 50,

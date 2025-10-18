@@ -1,6 +1,8 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap';
 
+const credit_providers = ["Experian", "Equifax", "TransUnion"];
+
 function AddPersonModal({ show, onHide }) {
     // Get personal information from local storage if available
     const storedPersonalInfo = JSON.parse(localStorage.getItem("personalInfo")) || {};
@@ -11,10 +13,12 @@ function AddPersonModal({ show, onHide }) {
         const creditScoreProvider = document.getElementById("creditScoreProvider").value;
         const creditScore = document.getElementById("creditScore").value;
 
+        const providerNumber = credit_providers.indexOf(creditScoreProvider);
+
         const personalInfo = {
             name,
             income,
-            creditScoreProvider,
+            providerNumber,
             creditScore
         };
 
