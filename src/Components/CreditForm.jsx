@@ -1,22 +1,30 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table';
+import { Button } from 'react-bootstrap';
+import { useState } from 'react';
+import AddCardModal from './AddCardModal';
 
 function CreditForm() {
-  return (
-    <div>
-        <h2>Credit Form</h2>
-        <form>
-            <div className="form-group">
-                <label htmlFor="amount">Amount</label>
-                <input type="number" id="amount" className="form-control" />
-            </div>
-            <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <input type="text" id="description" className="form-control" />
-            </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-    </div>
-  )
+    const [cards, setCards] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    // When lcicking Add Credit Card button, show the modal
+    const addCard = () => {
+        setShowModal(true);
+    }
+
+    const setShowModalhandler = (value) => {
+        setShowModal(value);
+    }
+
+    return (
+        <div>
+            <Button onClick={addCard} className="mb-3">
+                Add Credit Card
+            </Button>
+
+            {showModal ? <AddCardModal show={showModal} showHandler={setShowModalhandler} /> : null}
+        </div>
+    )
 }
 
-export default CreditForm
+export default CreditForm;
