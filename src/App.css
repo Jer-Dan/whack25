@@ -29,40 +29,32 @@ html {
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
     padding: 1vh;
-    min-height: 70vh;
-    height: 100%;
 }
 
 #AISectionDiv {
-    transition: max-height 0.3s ease;
     grid-column: 3;
-    max-height: 40vh;
     overflow: auto;
     padding: 1vh;
-    min-height: 50vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
 }
 
 /* Hovering over AI Section makes it larger */
-#AISectionDiv:hover {
-    max-height: 81vh;
-    transition: max-height 0.3s ease;
-}
+/* #AISectionDiv:hover { */
+/*     max-height: 81vh; */
+/*     transition: max-height 0.3s ease; */
+/* } */
 
 #AISectionDiv h1 {
     text-align: center ;
 }
 
 #PaymentsSectionDiv {
-    transition: all 0.3s ease;
     grid-column: 2;
-    max-height: 55vh;
     overflow: auto;
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
-    min-height: 25vh;
 }
 
 /* h1 in #PaymentsSectionDiv */
@@ -73,12 +65,10 @@ html {
 #PurchasesSectionDiv {
     transition: all 0.3s ease;
     grid-column: 2;
-    max-height: 55vh;
     overflow: auto;
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
-    min-height: 24vh;
 }
 
 #PurchasesSectionDiv h1 {
