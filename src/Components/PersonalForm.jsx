@@ -29,7 +29,7 @@ function PersonalForm() {
         {showModal && <AddPersonModal show={showModal} onHide={() => {
             setShowModal(false);
             forceUpdate();
-          }
+          }}
         />}
 
         <div className="mt-3">
