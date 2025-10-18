@@ -6,12 +6,18 @@ import PaymentsForm from './Components/PaymentsForm'
 import PurchasesForm from './Components/PurchasesForm'
 import ThemeToggle from './Components/ThemeToggle'
 import ScoreWidget from './Components/ScoreWidget'
+import Splash from './Components/Splash'
 
 const App = () => {
     let [score, setScore] = useState(null);
+    let [showSplash, setShowSplash] = useState(true);
 
     return (
-        <div id='AppDiv'>
+        <>
+            {showSplash ? (
+                <Splash onDone={() => setShowSplash(false)} />
+            ) : (
+                <div id='AppDiv'>
             <div id='DataSectionDiv'>
                 <DataSection />
             </div>
@@ -31,8 +37,10 @@ const App = () => {
             <div id='ScoreWidgetDiv'>
                 <ScoreWidget score={score} />
             </div>
-            <ThemeToggle />
-        </div>
+                    <ThemeToggle />
+                </div>
+            )}
+        </>
     )
 }
 

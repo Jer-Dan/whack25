@@ -10,9 +10,10 @@ function ScoreWidget({ score }) {
         ?
           null
         :
-          <Button variant="success">
-            Score: {score}
-          </Button>
+        // Change color depending on score value
+        <Button variant={score > 80 ? "success" : score > 50 ? "warning" : "danger"} style={{ fontSize: '1rem', padding: '1rem 2rem' }}>
+          Score: {score}
+        </Button>
       }
     </div>
   )
