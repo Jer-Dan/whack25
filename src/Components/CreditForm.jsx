@@ -5,6 +5,7 @@ import { useState } from 'react';
 import AddCardModal from './AddCardModal';
 import { Accordion } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import { useEffect } from 'react';
 
 function CreditForm() {
     const [cards, setCards] = useState([]);
@@ -14,23 +15,37 @@ function CreditForm() {
         setShowModal(true);
     }
 
-    // save to local storage
-    const saveToLocalStorage = () => {
-        localStorage.setItem("cards", JSON.stringify(cards));
-    }
-
     const setShowModalhandler = (value) => {
         setShowModal(value);
     }
 
     const handleCardAdding = (card) => {
-        setCards([...cards, card]);
-        saveToLocalStorage();
-        console.log(cards);
+        setCards(prev => {
+            const updated = [...prev, card];
+            localStorage.setItem("cards", JSON.stringify(updated));
+            console.log('saved cards', updated);
+            return updated;
+        });
+    }
+
+    const handleCardDeleting = (name) => {
+        setCards(prev => {
+            const updated = prev.filter(card => card.name !== name);
+            localStorage.setItem("cards", JSON.stringify(updated));
+            return updated;
+        });
+    }
+
+    const handleCardEditing = (name, updatedCard) => {
+        setCards(prev => {
+            const updated = prev.map(card => card.name === name ? updatedCard : card);
+            localStorage.setItem("cards", JSON.stringify(updated));
+            return updated;
+        });
     }
 
     // read from local storage on component mount
-    React.useEffect(() => {
+    useEffect(() => {
         const storedCards = JSON.parse(localStorage.getItem("cards"));
         if (storedCards) {
             setCards(storedCards);
@@ -49,7 +64,6 @@ function CreditForm() {
                         <Accordion.Header>{card.name} - {card.company}</Accordion.Header>
                         <Accordion.Body>
                             <Card style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title>{card.name}</Card.Title>
                                     <Card.Text>
@@ -60,7 +74,8 @@ function CreditForm() {
                                         Due Date: {card.dueDate} <br />
                                         Minimum Fee Payment: {card.minFeePayment} <br />
                                     </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
+                                    <Button variant="primary">Edit</Button>
+                                    <Button variant="primary" onClick={() => handleCardDeleting(card.name)}>Delete</Button>
                                 </Card.Body>
                             </Card>
                         </Accordion.Body>

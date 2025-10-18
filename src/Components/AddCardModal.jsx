@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap'
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 
-function AddCardModal({ show, showHandler, cardAddingHandler }) {
+function AddCardModal({ show, showHandler, cardAddingHandler, editedCard }) {
     const onSubmit = ({ name, company, maxCredit, currentBalance, statementBalanceDay, dueDate, minFeePayment }) => {
         // save card data to parent component via handler
         cardAddingHandler({
