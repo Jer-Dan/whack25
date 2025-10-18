@@ -52,7 +52,7 @@ function AISection() {
       console.log(text);
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-pro",
+        model: "gemini-2.5-flash-lite",
         contents: text,
       });
 
@@ -61,7 +61,7 @@ function AISection() {
     }
 
     genSummary();
-  });
+  }, []);
 
   return (
     <div>
