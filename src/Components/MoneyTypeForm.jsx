@@ -1,9 +1,13 @@
 import React from 'react'
+import IncomeForm from './IncomeForm'
 
-function MoneyTypeForm() {
-  return (
-    <div>MoneyTypeForm</div>
-  )
+
+function MoneyTypeForm({ type }) {
+    return (
+        <div>
+            {type === 'Income' && <IncomeForm />}
+        </div>
+    )
 }
 
 export default MoneyTypeForm

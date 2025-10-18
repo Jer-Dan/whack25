@@ -1,7 +1,12 @@
 * {
+    font-family: "Montserrat", sans-serif;
+}
+
+html {
     background-color: rgb(250, 250, 250);
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
+    margin: 1ex;
 }
 
 #AppDiv {
@@ -9,3 +14,4 @@
     grid-template-columns: 1fr 1fr; /* Creates two equal-fraction columns */
     gap: 10px; /* Optional: Adds space between the boxes */
 }
+
