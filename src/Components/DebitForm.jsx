@@ -1,9 +1,9 @@
 import React from 'react'
 
-function IncomeForm() {
+function DebitForm() {
   return (
     <div>
-        <h2>Income Form</h2>
+        <h2>Debit Form</h2>
         <form>
             <div className="form-group">
                 <label htmlFor="amount">Amount</label>
@@ -19,4 +19,4 @@ function IncomeForm() {
   )
 }
 
-export default IncomeForm
+export default DebitForm

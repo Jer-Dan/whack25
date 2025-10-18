@@ -10,8 +10,22 @@ html {
 }
 
 #AppDiv {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Creates two equal-fraction columns */
-    gap: 10px; /* Optional: Adds space between the boxes */
+    display: flex;
+    height: 100%;
+    /* gap: 10px; Optional: Adds space between the boxes  */
 }
 
+#DataSectionDiv {
+    resize: horizontal;
+    width: 25em;        /* initial width so resize has a starting value */
+    min-width: 12em;    /* allow shrinking but not too small */
+    max-width: 80%;     /* optional limit relative to container */
+    flex: 0 0 auto;     /* prevent flexbox from forcing width */ 
+    max-height: 100%;
+}
+
+#AISectionDiv {
+    flex-grow: 1;
+    margin-left: 1em;
+    overflow: scroll;
+}
