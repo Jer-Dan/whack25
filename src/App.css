@@ -19,13 +19,16 @@ html {
 #AppDiv {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-row-auto: minmax(12.5vh, 8);
     gap: 10px;
     margin: 1ex;
 }
 
 #DataSectionDiv {
-    transition: max-height 0.3s ease;
     grid-column: 1;
+    grid-row: 1;
+    height: 98vh;
+    overflow-y: scroll;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
     padding: 1vh;
@@ -33,7 +36,8 @@ html {
 
 #AISectionDiv {
     grid-column: 3;
-    overflow: auto;
+    height: 98vh;
+    overflow-y: scroll;
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
@@ -52,6 +56,7 @@ html {
 #PaymentsSectionDiv {
     grid-column: 2;
     overflow: auto;
+    height: 48.45vh;
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
@@ -66,6 +71,7 @@ html {
     transition: all 0.3s ease;
     grid-column: 2;
     overflow: auto;
+    height: 48.45vh;
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
