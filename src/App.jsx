@@ -3,6 +3,7 @@ import './App.css'
 import DataSection from './Components/DataSection'
 import AISection from './Components/AISection'
 import PaymentsForm from './Components/PaymentsForm'
+import PurchasesForm from './Components/PurchasesForm'
 
 const App = () => {
     return (
@@ -13,6 +14,9 @@ const App = () => {
 
             <div id="PaymentsSectionDiv">
                 <PaymentsForm />
+            </div>
+            <div id="PurchasesSectionDiv">
+                <PurchasesForm />
             </div>
 
             <div id='AISectionDiv'>

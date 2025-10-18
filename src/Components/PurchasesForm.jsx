@@ -7,48 +7,48 @@ import { Accordion } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { useEffect } from 'react';
 
-function PaymentsForm() {
-    const [payments, setPayments] = useState([]);
+function PurchasesForm() {
+    const [purchases, setPurchases] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
     // When clicking Add Payment button, show the modal
-    const addPayment = () => {
+    const addPurchase = () => {
         setShowModal(true);
     }
     const setShowModalhandler = (value) => {
         setShowModal(value);
     }
-    const handlePaymentAdding = (payment) => {
-        setPayments(prev => {
-            const updated = [...prev, payment];
-            localStorage.setItem("payments", JSON.stringify(updated));
-            console.log('saved payments', updated);
+    const handlePurchaseAdding = (purchase) => {
+        setPurchases(prev => {
+            const updated = [...prev, purchase];
+            localStorage.setItem("purchases", JSON.stringify(updated));
+            console.log('saved purchases', updated);
             return updated;
         });
     }
     // read from local storage on component mount
     useEffect(() => {
-        const storedPayments = JSON.parse(localStorage.getItem("payments"));
-        if (storedPayments) {
-            setPayments(storedPayments);
+        const storedPurchases = JSON.parse(localStorage.getItem("purchases"));
+        if (storedPurchases) {
+            setPurchases(storedPurchases);
         }
     }, []);
 
 
     return (
         <div>
-            <h1>Payments Form</h1>
+            <h1>Purchases Form</h1>
 
-            <Button variant="primary" onClick={addPayment}>
-                Add Payment
+            <Button variant="primary" onClick={addPurchase}>
+                Add Purchase
             </Button>
 
-            <AddPaymentModal show={showModal} showHandler={setShowModalhandler} paymentAddingHandler={handlePaymentAdding} />
+            <AddPaymentModal show={showModal} showHandler={setShowModalhandler} paymentAddingHandler={handlePurchaseAdding} />
 
             <Accordion defaultActiveKey="0">
                 <Card>
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Payments</Accordion.Header>
+                        <Accordion.Header>Purchases</Accordion.Header>
                         <Accordion.Body>
                             <Table striped bordered hover>
                                 <thead>
@@ -58,10 +58,10 @@ function PaymentsForm() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {payments.map((payment, index) => (
+                                    {purchases.map((purchase, index) => (
                                         <tr key={index}>
-                                            <td>{payment.amount}</td>
-                                            <td>{payment.method}</td>
+                                            <td>{purchase.amount}</td>
+                                            <td>{purchase.method}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -75,4 +75,4 @@ function PaymentsForm() {
     )
 }
 
-export default PaymentsForm
+export default PurchasesForm
