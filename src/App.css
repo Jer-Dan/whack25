@@ -52,3 +52,14 @@ html {
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
 }
+
+#PurchasesSectionDiv {
+    align-self: flex-start;
+    flex-basis: 33%;
+    max-height: 55vh;
+    overflow: auto;
+    margin-left: 1ex;
+    padding: 1vh;
+    border: 2px solid rgb(145, 199, 237);
+    border-radius: 10px;
+}

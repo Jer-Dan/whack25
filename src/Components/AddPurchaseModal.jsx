@@ -1,13 +1,13 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap';
 
-function AddPaymentModal({ show, showHandler, paymentAddingHandler }) {
+function AddPurchaseModal({ show, showHandler, purchaseAddingHandler }) {
     // get all cards stored from local storage earlier
     const storedCards = JSON.parse(localStorage.getItem("cards")) || [];
 
-    const onSubmit = ({ amount, date, method }) => {
-        // save payment data to parent component via handler
-        paymentAddingHandler({
+    const onSubmit = ({ amount, method }) => {
+        // save purchase data to parent component via handler
+        purchaseAddingHandler({
             amount,
             method
         });
@@ -18,14 +18,14 @@ function AddPaymentModal({ show, showHandler, paymentAddingHandler }) {
         <Modal show={show} onHide={() => showHandler(false)}>
             <Modal.Dialog>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add New Payment</Modal.Title>
+                    <Modal.Title>Add New Purchase</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>Enter the details of the payment.</p>
+                    <p>Enter the details of the purchase.</p>
                     {/* show a drop down for cards*/}
                     <div className="form-group">
-                        <label htmlFor="method">Payment Method</label>
+                        <label htmlFor="method">Purchase Method</label>
                         <select id="method" className="form-control">
                             {storedCards.map((card, index) => (
                                 <option key={index} value={card.id}>{card.name}</option>
@@ -39,17 +39,17 @@ function AddPaymentModal({ show, showHandler, paymentAddingHandler }) {
                             <input type="number" id="amount" className="form-control" />
                         </div>
                     </form>
-                </Modal.Body>
+                </Modal.Body>       
 
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => onSubmit({
                         amount: document.getElementById("amount").value,
                         method: document.getElementById("method").value
-                    })}>Add Payment</Button>
+                    })}>Add Purchase</Button>
                 </Modal.Footer>
             </Modal.Dialog>
         </Modal >
     )
 }
 
-export default AddPaymentModal;
+export default AddPurchaseModal;

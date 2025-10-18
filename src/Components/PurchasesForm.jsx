@@ -2,7 +2,7 @@ import React from 'react'
 import Table from 'react-bootstrap/Table';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
-import AddPaymentModal from './AddPaymentModal';
+import AddPurchaseModal from './AddPurchaseModal';
 import { Accordion } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { useEffect } from 'react';
@@ -11,7 +11,7 @@ function PurchasesForm() {
     const [purchases, setPurchases] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
-    // When clicking Add Payment button, show the modal
+    // When clicking Add Purchase button, show the modal
     const addPurchase = () => {
         setShowModal(true);
     }
@@ -43,7 +43,7 @@ function PurchasesForm() {
                 Add Purchase
             </Button>
 
-            <AddPaymentModal show={showModal} showHandler={setShowModalhandler} paymentAddingHandler={handlePurchaseAdding} />
+            <AddPurchaseModal show={showModal} showHandler={setShowModalhandler} purchaseAddingHandler={handlePurchaseAdding} />
 
             <Accordion defaultActiveKey="0">
                 <Card>
