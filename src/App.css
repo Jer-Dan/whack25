@@ -2,9 +2,6 @@
     font-family: "Montserrat", sans-serif;
 }
 
-html, body, #root {
-    height: 100%;
-}
 
 html {
     background-color: rgb(250, 250, 250);
@@ -12,66 +9,25 @@ html {
     font-optical-sizing: auto;
 }
 
-body {
-    overflow: hidden;
-    margin: 1ex;
-}
-
-.ResizeHandleOuter {
-  flex: 0 0 1.5em;
-  position: relative;
-  outline: none;
-
-  --background-color: transparent;
-}
-.ResizeHandleOuter[data-resize-handle-active] {
-  --background-color: var(--color-solid-resize-bar-handle);
-}
-
-.ResizeHandleInner {
-  position: absolute;
-  top: 0.25em;
-  bottom: 0.25em;
-  left: 0.25em;
-  right: 0.25em;
-  border-radius: 0.25em;
-  background-color: var(--background-color);
-  transition: background-color 0.2s linear;
-}
-
-.Icon {
-  width: 1em;
-  height: 1em;
-  position: absolute;
-  left: calc(50% - 0.5rem);
-  top: calc(50% - 0.5rem);
-}
-
-
 #AppDiv {
-    display: flex;
-    height: calc(100vh - 2ex);
-    /* gap: 10px; Optional: Adds space between the boxes  */
+    display: inline-flex;
+    margin: 1ex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 #DataSectionDiv {
-    resize: horizontal;
-    overflow: scroll;
-    width: 25em;        /* initial width so resize has a starting value */
-    min-width: 12em;    /* allow shrinking but not too small */
-    max-width: 80%;     /* optional limit relative to container */
-    flex: 0 0 auto;     /* prevent flexbox from forcing width */ 
-    max-height: 100%;
+    flex-basis: 60%;
+    border: 2px solid rgb(145, 199, 237);
+    border-radius: 10px;
+    padding: 1vh;
 }
 
 #AISectionDiv {
-    flex-grow: 1;
-    margin-left: 1em;
-    overflow: scroll;
-}
-
-.section-scroll {
-    flex: 1 1 auto;
-    overflow: auto; /* actual scrolling happens here */
-    -webkit-overflow-scrolling: touch;
+    flex-basis: 40%;
+    max-height: 20%;
+    margin-left: 1ex;
+    padding: 1vh;
+    border: 2px solid rgb(145, 199, 237);
+    border-radius: 10px;
 }
