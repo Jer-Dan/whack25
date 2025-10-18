@@ -33,12 +33,29 @@ html {
 }
 
 #AISectionDiv {
+<<<<<<< Updated upstream
     grid-column: 3;
+=======
+    transition: max-height 0.3s ease;
+    align-self: flex-start;
+    flex-basis: 33%;
+>>>>>>> Stashed changes
     max-height: 40vh;
     overflow: auto;
     padding: 1vh;
+    min-height: 50vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
+}
+
+/* Hovering over AI Section makes it larger */
+#AISectionDiv:hover {
+    max-height: 70vh;
+    transition: max-height 0.3s ease;
+}
+
+#AISectionDiv h1 {
+    text-align: center ;
 }
 
 #PaymentsSectionDiv {
@@ -48,7 +65,12 @@ html {
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
-    min-height: 17vh;
+    min-height: 25vh;
+}
+
+/* h1 in #PaymentsSectionDiv */
+#PaymentsSectionDiv h1 {
+    text-align: center ;
 }
 
 #PurchasesSectionDiv {
@@ -58,7 +80,11 @@ html {
     padding: 1vh;
     border: 2px solid rgb(145, 199, 237);
     border-radius: 10px;
-    min-height: 17vh;
+    min-height: 24vh;
+}
+
+#PurchasesSectionDiv h1 {
+    text-align: center ;
 }
 
 #PaymentsColumn {
@@ -115,37 +141,3 @@ html, body, #root {
 }
 
 #ThemeToggleButton:hover { transform: translateY(-2px); }
-
-/* Themed tables (Bootstrap table overrides) */
-.table {
-    color: var(--text);
-    background-color: transparent;
-    border-color: rgba(0,0,0,0.08);
-}
-
-.table thead th {
-    background: transparent;
-    color: var(--text);
-    border-bottom: 1px solid rgba(0,0,0,0.12);
-}
-
-.table tbody tr td {
-    border-top: 1px solid rgba(0,0,0,0.06);
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0,0,0,0.02);
-}
-
-.theme-dark .table thead th {
-    border-bottom-color: rgba(255,255,255,0.06);
-}
-
-.theme-dark .table tbody tr td {
-    border-top-color: rgba(255,255,255,0.03);
-}
-
-.theme-dark .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(255,255,255,0.02);
-}
-
