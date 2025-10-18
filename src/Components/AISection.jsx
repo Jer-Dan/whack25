@@ -1,5 +1,6 @@
-import { React, useState, useEffect } from 'react'
-import "../Styles/AISection.css"
+import { React, useState, useEffect } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
+import "../Styles/AISection.css";
 
 import { GoogleGenAI } from '@google/genai';
 
@@ -61,7 +62,11 @@ Cards:`;
 }
 
 function AISection() {
-  const [summary, setSummary] = useState("<div class='loading'>Loading...</div>");
+  const [summary, setSummary] = useState(() => (
+    <Spinner animation="grow" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+  ));
 
   const API_KEY = import.meta.env.VITE_GEMINI_KEY;
   const ai = new GoogleGenAI({ apiKey: API_KEY });
@@ -77,8 +82,9 @@ function AISection() {
         contents: prompt,
       });
 
-      let [overall, suggestions] = response.text.split('\n');
-      setSummary(`<div>${overall}</div> <br/><br/> <div>${suggestions}</div>`);
+      let [overall, suggestions] = response.text.split('\n\n');
+      setSummary(() => ({overall}<br><br>{suggestions}));
+
       console.log(response.text);
     }
 
@@ -89,7 +95,7 @@ function AISection() {
     <div>
       <h1>AI Section</h1>
 
-      {summary}
+      {(summary())}
     </div>
   )
 }
