@@ -47,15 +47,17 @@ Total balance: ${info.total_balance} GBP
 History length: ${info.history_length} months
 Cards:`;
 
+  const cards = JSON.parse(localStorage.getItem("cards"));
+
   for (let i = 0; i < cards.length; i++) {
     prompt += `\n\t - Card ${i+1}:`;
     prompt += `\n\t\t - Card name: ${cards[i].name}`;
     prompt += `\n\t\t - Company: ${cards[i].company}`;
-    prompt += `\n\t\t - Max credit: ${cards[i].max_credit} GBP`;
-    prompt += `\n\t\t - Current balance: ${cards[i].current_balance} GBP`;
-    prompt += `\n\t\t - Due date: Day ${cards[i].due_date} of the month`;
-    prompt += `\n\t\t - Grace period: ${cards[i].grace_period} days`;
-    prompt += `\n\t\t - Minimum fee: ${cards[i].minimum_fee} GBP`
+    prompt += `\n\t\t - Max credit: ${cards[i].maxCredit} GBP`;
+    prompt += `\n\t\t - Current balance: ${cards[i].currentBalance} GBP`;
+    prompt += `\n\t\t - Statement balance day: ${cards[i].statementBalanceDay}`
+    prompt += `\n\t\t - Due date: Day ${cards[i].dueDate} of the month`;
+    prompt += `\n\t\t - Minimum fee: ${cards[i].minFeePayment} GBP`
   }
 
   return prompt;
