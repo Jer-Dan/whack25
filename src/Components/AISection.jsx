@@ -24,7 +24,7 @@ const total_balance = () => {
 }
 
 function genPrompt(info, prompt="") {
-    prompt += "\nOutput the results as a JSON with three parts: the first part is \"summary\", which contains the first paragraph. The second part is \"improvement\", which contains the second paragraph. The third is \"score\", which is an integer value out of 100 acting as an overall rating of the user's management of their credit.";
+    prompt += "\nOutput the results as a JSON with three parts: the first part is \"summary\", which contains the first paragraph. The second part is \"improvement\", which contains the second paragraph. The third is \"score\", which is an integer value out of 100 acting as an overall rating of the user's management of their credit. It is very important that you ONLY OUTPUT THE JSON, NOT THE RAW TEXT PARAGRAPHS.";
 
     prompt += `\n\nIncome: ${info.income} GBP/year
 Credit score: ${info.credit_score[0]} using ${credit_providers[info.credit_score[1]]}
@@ -63,7 +63,7 @@ Cards:`;
     return prompt;
 }
 
-function AISection() {
+function AISection({ setScore }) {
     const prompts = [
         "You are taking the role of a Financial Strategist. I will provide you with information about your client's income and their credit history, as well as a primary financial goal they want to achieve. You are to provide a paragraph analysing their current financial standing strictly in the context of achieving their stated goal. A second paragraph must provide a forward-looking roadmap, outlining the key strategic steps, potential trade-offs, and a projected timeline to reach their objective. Compare their current trajectory to what is typically required to achieve a similar goal. If no entries are provided in a section, don't comment on it. Don't use any kind of greetings, just get straight into it. Use concise wording, but provide the relevant details. Separate the paragraphs. You are talking directly to the client, so refer to them directly as 'you'. Instead of referring to amounts of money as 'x GBP', refer to them as '£x'. Do not refer to the cards by their numbers, only by their names. Similarly, do not refer to payments and purchases by their numbers, but if necessary refer to individual instances explicitly.",
         "You are taking the role of a Credit Investigator. I will provide you with information about your client's income and their credit history. Your task is to perform a forensic analysis of the report to identify specific entries that are disproportionately impacting their score, as well as any potential errors or red flags for fraud. The first paragraph should be a summary of your findings, highlighting the most critical issues discovered. The second paragraph should provide a clear, step-by-step guide on how to address these specific high-impact items, including advice on disputes or negotiations. Do not provide general financial advice, focus only on fixing the identified problems. If no entries are provided in a section, don't comment on it. Don't use any kind of greetings, just get straight into it. Use concise, objective wording. Separate the paragraphs with two lines. You are talking directly to the client, so refer to them directly as 'you'. Instead of referring to amounts of money as 'x GBP', refer to them as '£x'. Do not refer to the cards by their numbers, only by their names. Similarly, do not refer to payments and purchases by their numbers, but if necessary refer to individual instances explicitly.",
@@ -87,6 +87,7 @@ function AISection() {
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
         );
+        setScore(null);
 
         // Real data
         let info = {
@@ -116,6 +117,7 @@ function AISection() {
             .replace("json", "")
         );
         setSummary(<div>{responseJSON.summary}<br /><br />{responseJSON.improvement}</div>);
+        setScore(responseJSON.score);
     }
 
     useEffect(() => {

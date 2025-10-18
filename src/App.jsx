@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState } from 'react'
 import './App.css'
 import DataSection from './Components/DataSection'
 import AISection from './Components/AISection'
@@ -8,6 +8,8 @@ import ThemeToggle from './Components/ThemeToggle'
 import ScoreWidget from './Components/ScoreWidget'
 
 const App = () => {
+    let [score, setScore] = useState(null);
+
     return (
         <div id='AppDiv'>
             <div id='DataSectionDiv'>
@@ -23,11 +25,11 @@ const App = () => {
             </div>
 
             <div id='AISectionDiv'>
-                <AISection />
+                <AISection setScore={setScore} />
             </div>
 
             <div id='ScoreWidgetDiv'>
-                <ScoreWidget score={85} />
+                <ScoreWidget score={score} />
             </div>
             <ThemeToggle />
         </div>
