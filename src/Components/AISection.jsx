@@ -28,7 +28,6 @@ function genPrompt(info, prompt="") {
 Credit score: ${info.credit_score[0]} using ${credit_providers[info.credit_score[1]]}
 Credit utilisation: ${info.credit_utilisation}%
 Total balance: ${info.total_balance} GBP
-History length: ${info.history_length} months
 Cards:`;
 
     let cards = info.cards;
@@ -100,7 +99,6 @@ function AISection() {
             credit_score: [personalInfo.creditScore || 870, personalInfo.providerNumber],
             credit_utilisation: personalInfo.creditUtilisation || 25,
             total_balance: total_balance(),
-            history_length: 50,
             cards: cards,
             payments: payments,
             purchases: purchases
