@@ -14,18 +14,6 @@ function DataSection() {
                 Your Data
             </h1>
 
-            <Dropdown>
-                <Dropdown.Toggle id="dropdown-basic">
-                    {FormType === "" ? "Select Money Type" : FormType}
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setFormType('Income')}>Income</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setFormType('Expenditure/Debit')}>Expenditure/Debit</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setFormType('Credit')}>Credit</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-
             <MoneyTypeForm type={FormType} />
         </div>
     )
