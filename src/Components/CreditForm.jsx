@@ -53,7 +53,7 @@ function CreditForm() {
     }, []);
 
     return (
-        <div>
+        <div id="CreditFormSpotlight">
             <Button onClick={addCard} className="mb-3">
                 Add Credit Card
             </Button>

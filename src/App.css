@@ -156,6 +156,10 @@ html, body, #root {
     z-index: 1100;
 }
 
+#OnboardingDiv{
+    z-index: 100;
+}
+
 .splash-center { text-align: center; }
 .splash-icon {
     width: 90px;

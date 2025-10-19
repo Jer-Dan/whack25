@@ -45,7 +45,7 @@ function PaymentsForm() {
 
 
     return (
-        <div>
+        <div id="PaymentsFormSpotlight">
             <OverlayTrigger
                 placement="right"
                 overlay={<Tooltip>Paying off your credit (debt)</Tooltip>}

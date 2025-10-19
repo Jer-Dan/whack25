@@ -21,7 +21,7 @@ function PersonalForm() {
     }, []);
 
   return (
-    <div>
+    <div id="PersonalFormSpotlight">
         {/* // Hide the button if info is already added */}
         {!infoAdded && (
             <Button variant="primary" onClick={() => setShowModal(true)}>Add Personal Information</Button>

@@ -40,7 +40,7 @@ function PurchasesForm() {
 
 
     return (
-        <div>
+        <div id="PurchasesFormSpotlight">
             <OverlayTrigger
                 placement="right"
                 overlay={<Tooltip>Record of your purchases made using credit cards</Tooltip>}

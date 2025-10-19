@@ -55,7 +55,7 @@ function calcBalance() {
   }
 }
 
-function DataSection() {
+function DataSection({ isOnboarding, handleOnboardingComplete }) {
 
     const [FormType, setFormType] = useState("")
 
@@ -64,8 +64,10 @@ function DataSection() {
             <h1 id='DataSectionTitle'>
                 Your Data
             </h1>
-
-            <PersonalForm />
+        {/* if onboarding is set to default then set this z-index to 1000 */}
+        <div style={{ zIndex: (isOnboarding === "Default" ? 5000 : 'auto') }}>
+                <PersonalForm />
+        </div>
 
             <h2>
               Current Balance:

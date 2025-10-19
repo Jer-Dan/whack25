@@ -127,7 +127,7 @@ function AISection({ setScore }) {
     }, [personality]);
 
     return (
-        <div>
+        <div id="AISectionSpotlight">
             <div>
                 <h1>AI Review</h1>
                 <Button variant="primary" onClick={() => genSummary()}>Regenerate Summary</Button>
