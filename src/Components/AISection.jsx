@@ -135,7 +135,7 @@ function AISection({ setScore }) {
 
             {/* Dropdown to select AI model */}
             <div>
-                <label htmlFor="ai-model">Select mode:</label>
+                <label htmlFor="ai-model">Select mode: </label>
                 <select id="ai-model" name="ai-model">
                     <option onClick={() => setPro(false)} value="flash-lite">Speed</option>
                     <option onClick={() => setPro(true)} value="pro">Detailed</option>
@@ -144,7 +144,7 @@ function AISection({ setScore }) {
 
             {/* Dropdown to select AI personality */}
             <div>
-                <label htmlFor="ai-personality">Select personality:</label>
+                <label htmlFor="ai-personality">Select personality: </label>
                 <select id="ai-personality" name="ai-personality">
                     <option onClick={() => setPersonality(0)} value="0">Hacky: Strategist</option>
                     <option onClick={() => setPersonality(1)} value="1">Gohan: Investigator</option>
