@@ -61,7 +61,7 @@ function PurchasesForm() {
 
             <AddPurchaseModal show={showModal} showHandler={setShowModalhandler} purchaseAddingHandler={handlePurchaseAdding} />
 
-            <Accordion defaultActiveKey="0">
+            <Accordion style={{marginTop: "1.5vh"}} defaultActiveKey="0">
                 <Card>
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Purchases</Accordion.Header>

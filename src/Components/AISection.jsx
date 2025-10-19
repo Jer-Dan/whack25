@@ -128,9 +128,9 @@ function AISection({ setScore }) {
 
     return (
         <div id="AISectionSpotlight">
-            <div>
+            <div style={{ width: "100%" }}>
                 <h1>AI Review</h1>
-                <Button variant="primary" onClick={() => genSummary()}>Regenerate Summary</Button>
+                <Button variant="primary" style={{float: "right", marginTop: "-5vh"}} onClick={() => genSummary()}>↻</Button>
             </div>
 
             {/* Dropdown to select AI model */}
