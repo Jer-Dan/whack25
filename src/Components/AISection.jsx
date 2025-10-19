@@ -9,8 +9,6 @@ import { GoogleGenAI } from '@google/genai';
 const credit_providers = ["Experian", "Equifax", "TransUnion"];
 const mode_labels = ["Hacky: Strategist", "Gohan: Investigator", "Beremy: Coach", "Fuca: The Simplifier"];
 
-const cards = JSON.parse(localStorage.getItem("cards"));
-
 // Get personal info from local storage
 const personalInfo = JSON.parse(localStorage.getItem("personalInfo")) || {};
 const payments = JSON.parse(localStorage.getItem("payments")) || [];
@@ -37,6 +35,7 @@ Total balance: ${info.total_balance} GBP
 Cards:`;
 
     let cards = info.cards;
+
     for (let i = 0; i < cards.length; i++) {
         prompt += `\n\t- Card ${i + 1}:`;
         prompt += `\n\t\t- Card name: ${cards[i].name}`;
@@ -96,6 +95,7 @@ function AISection({ setScore }) {
         setScore(null);
 
         // Real data
+        const cards = JSON.parse(localStorage.getItem("cards"));
         let info = {
             income: personalInfo.income || 32000,
             credit_score: [personalInfo.creditScore || 870, personalInfo.providerNumber],
