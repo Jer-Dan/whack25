@@ -5,11 +5,12 @@ function AddPaymentModal({ show, showHandler, paymentAddingHandler }) {
     // get all cards stored from local storage earlier
     const storedCards = JSON.parse(localStorage.getItem("cards")) || [];
 
-    const onSubmit = ({ amount, date, method }) => {
+    const onSubmit = ({ amount, method, date }) => {
         // save payment data to parent component via handler
         paymentAddingHandler({
             amount,
-            method
+            method,
+            date,
         });
         showHandler(false);
     }
@@ -38,13 +39,19 @@ function AddPaymentModal({ show, showHandler, paymentAddingHandler }) {
                             <label htmlFor="amount">Amount</label>
                             <input type="number" id="amount" className="form-control" />
                         </div>
+
+                        <div className="form-group">
+                            <label htmlFor="date">Date</label>
+                            <input type="date" id="date" className="form-control" />
+                        </div>
                     </form>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => onSubmit({
                         amount: document.getElementById("amount").value,
-                        method: document.getElementById("method").value
+                        method: document.getElementById("method").value,
+                        date: document.getElementById("date").value
                     })}>Add Payment</Button>
                 </Modal.Footer>
             </Modal.Dialog>
