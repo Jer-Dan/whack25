@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { Chart } from 'react-charts'
 import { Button } from 'react-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function ChartWidget() {
     const [type, setType] = useState('purchases') // 'purchases' or 'payments'
@@ -24,7 +25,7 @@ function ChartWidget() {
                 data
             }
         ]
-    }, [type, refresh])
+    }, [type])
 
     const primaryAxis = useMemo(() => ({
         getValue: d => d.primary,
@@ -44,13 +45,31 @@ function ChartWidget() {
 
     return (
         <div style={{ padding: '8px', minWidth: 300 }}>
-            <div style={{ gap: 8, alignItems: 'center', marginBottom: 8 }}>
-                <select id="chart-type" value={type} onChange={e => setType(e.target.value)}>
-                    <option value="purchases">Purchases</option>
-                    <option value="payments">Payments</option>
-                </select>
-                <Button onClick={() => setRefresh(r => r + 1)} style={{float: "right"}}>↻</Button>
-            </div>
+
+            {/* <div style={{ gap: 8, alignItems: 'center', marginBottom: 8 }}> */}
+            {/*     <select id="chart-type" value={type} onChange={e => setType(e.target.value)}> */}
+            {/*         <option value="purchases">Purchases</option> */}
+            {/*         <option value="payments">Payments</option> */}
+            {/*     </select> */}
+            {/*     <Button onClick={() => setRefresh(r => r + 1)} style={{float: "right"}}>↻</Button> */}
+            {/* </div> */}
+
+            <Dropdown onSelect={(value) => setType(value)}>
+              <Dropdown.Toggle variant="secondary" id="chart-type-dropdown">
+                {type === 'purchases' ? 'Purchases' : 'Payments'}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item eventKey="purchases">Purchases</Dropdown.Item>
+                <Dropdown.Item eventKey="payments">Payments</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Button variant="outline-primary"
+                    onClick={() => setRefresh(r => r+1)}
+                    style={{float: "right", marginTop: "-5vh"}}>
+              ↻
+            </Button>
 
             <div style={{ width: '100%', height: '280px' }}>
                 {series[0].data.length === 0 ? (

@@ -2,10 +2,13 @@ import { React, useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import "../Styles/AISection.css";
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import { GoogleGenAI } from '@google/genai';
 
 const credit_providers = ["Experian", "Equifax", "TransUnion"];
+const mode_labels = ["Hacky: Strategist", "Gohan: Investigator", "Beremy: Coach", "Fuca: The Simplifier"];
+
 const cards = JSON.parse(localStorage.getItem("cards"));
 
 // Get personal info from local storage
@@ -125,38 +128,45 @@ function AISection({ setScore }) {
 
     useEffect(() => {
         genSummary();
-    }, [personality]);
+    }, [personality, pro]);
 
     return (
         <div id="AISectionSpotlight">
             <div style={{ width: "100%" }}>
                 <h1>AI Review</h1>
-                <Button variant="primary" style={{float: "right", marginTop: "-5vh"}} onClick={() => genSummary()}>↻</Button>
+                <Button variant="primary" style={{float: "right", marginTop: "-5vh"}} onClick={() => genSummary()}>
+                  ↻
+                </Button>
             </div>
 
-            {/* Dropdown to select AI model */}
             <div>
-                <label htmlFor="ai-model">Mode: </label>
-                {" "}
-                <select id="ai-model" name="ai-model">
-                    <option onClick={() => setPro(false)} value="flash-lite">Speed</option>
-                    <option onClick={() => setPro(true)} value="pro">Detailed</option>
-                </select>
+
+              <Dropdown onSelect={(value) => setPro(value === 'pro')}>
+                <Dropdown.Toggle id="ai-model-dropdown" variant="secondary">
+                  {pro ? "Detailed" : "Speed"}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="flash-lite">Speed</Dropdown.Item>
+                  <Dropdown.Item eventKey="pro">Detailed</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+
+              <Dropdown onSelect={(value) => setPersonality(value)} style={{float: "right", marginTop: "-4.75vh"}}>
+                <Dropdown.Toggle id="ai-personality" variant="secondary">
+                  {mode_labels[personality]}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey={0}>{mode_labels[0]}</Dropdown.Item>
+                  <Dropdown.Item eventKey={1}>{mode_labels[1]}</Dropdown.Item>
+                  <Dropdown.Item eventKey={2}>{mode_labels[2]}</Dropdown.Item>
+                  <Dropdown.Item eventKey={3}>{mode_labels[3]}</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
 
-            {/* Dropdown to select AI personality */}
-            <div>
-                <label htmlFor="ai-personality">Personality:</label>
-                {" "}
-                <select id="ai-personality" name="ai-personality">
-                    <option onClick={() => setPersonality(0)} value="0">Hacky: Strategist</option>
-                    <option onClick={() => setPersonality(1)} value="1">Gohan: Investigator</option>
-                    <option onClick={() => setPersonality(2)} value="2">Heremy: Coach</option>
-                    <option onClick={() => setPersonality(3)} value="3">Fuca: The Simplifier</option>
-                </select>
-            </div>
-
-            {summary}
+          {summary}
         </div>
     )
 }
