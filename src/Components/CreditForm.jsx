@@ -74,7 +74,7 @@ function CreditForm() {
                                         Due Date: {card.dueDate} <br />
                                         Minimum Fee Payment: £{card.minFeePayment} <br />
                                     </Card.Text>
-                                    <Button variant="primary">Edit</Button>
+                                    {/* <Button variant="primary">Edit</Button> */}
                                     <Button variant="primary" onClick={() => handleCardDeleting(card.name)}>Delete</Button>
                                 </Card.Body>
                             </Card>
