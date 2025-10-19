@@ -118,7 +118,7 @@ function AISection({ setScore }) {
             .replaceAll("```", "")
             .replace("json", "")
         );
-        setSummary(<div>{responseJSON.summary}<br /><br />{responseJSON.improvement}</div>);
+        setSummary(<div><br />{responseJSON.summary}<br /><br />{responseJSON.improvement}</div>);
         setScore(responseJSON.score);
     }
 
