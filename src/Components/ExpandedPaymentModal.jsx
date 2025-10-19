@@ -17,7 +17,7 @@ function ExpandedPaymentModal({ show, showHandler }) {
                 <ul>
                     {storedPayments.map((payment, index) => (
                         <li key={index}>
-                            {payment.amount} - {payment.method}
+                            £{payment.amount} - {payment.method}
                         </li>
                     ))}
                 </ul>

@@ -77,7 +77,7 @@ function PurchasesForm() {
                                     {/* Map through the 3 most recent purchases */}
                                     {purchases.slice(-3).map((purchase, index) => (
                                         <tr key={index}>
-                                            <td>{purchase.amount}</td>
+                                            <td>£{purchase.amount}</td>
                                             <td>{purchase.method}</td>
                                         </tr>
                                     ))}

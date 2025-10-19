@@ -82,7 +82,7 @@ function PaymentsForm() {
                                     {/* Map through the 3 most recent payments */}
                                     {payments.slice(-3).map((payment, index) => (
                                         <tr key={index}>
-                                            <td>{payment.amount}</td>
+                                            <td>£{payment.amount}</td>
                                             <td>{payment.method}</td>
                                         </tr>
                                     ))}

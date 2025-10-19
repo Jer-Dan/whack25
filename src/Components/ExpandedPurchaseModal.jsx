@@ -15,7 +15,7 @@ function ExpandedPurchaseModal({ show, showHandler }) {
                     {storedPurchases.length > 0 ? (
                         <ul>
                             {storedPurchases.map((p, i) => (
-                                <li key={i}>{p.amount} - {p.method}</li>
+                                <li key={i}>£{p.amount} - {p.method}</li>
                             ))}
                         </ul>
                     ) : (
