@@ -15,7 +15,7 @@ const payments = JSON.parse(localStorage.getItem("payments")) || [];
 const purchases = JSON.parse(localStorage.getItem("purchases")) || [];
 
 // get total balance from all cards
-const total_balance = () => {
+const total_balance = (cards) => {
     let total = 0;
     for (let card of cards) {
         total += parseFloat(card.currentBalance);
@@ -87,20 +87,21 @@ function AISection({ setScore }) {
     const ai = new GoogleGenAI({ apiKey: API_KEY });
 
     async function genSummary() {
+        const cards = JSON.parse(localStorage.getItem("cards"));
+
         setSummary(
-            <Spinner animation="grow" role="status">
+            <Spinner animation="grow" role="status" style={{marginTop: "2vh"}}>
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
         );
         setScore(null);
 
         // Real data
-        const cards = JSON.parse(localStorage.getItem("cards"));
         let info = {
             income: personalInfo.income || 32000,
             credit_score: [personalInfo.creditScore || 870, personalInfo.providerNumber],
             credit_utilisation: personalInfo.creditUtilisation || 25,
-            total_balance: total_balance(),
+            total_balance: total_balance(cards),
             cards: cards,
             payments: payments,
             purchases: purchases
