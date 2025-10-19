@@ -38,6 +38,15 @@ html {
     padding: 1vh;
 }
 
+#ChartWidget {
+    border: 2px solid rgb(145, 199, 237);
+    border-radius: 10px;
+    padding: 1vh;
+    grid-column: 1 / 4;
+    grid-row: 4;
+    margin-top: -2.5vh;
+}
+
 #AISectionDiv {
     grid-column: 3;
     height: 88vh;

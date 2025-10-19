@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { Chart } from 'react-charts'
+import { Button } from 'react-bootstrap';
 
 function ChartWidget() {
     const [type, setType] = useState('purchases') // 'purchases' or 'payments'
@@ -43,20 +44,21 @@ function ChartWidget() {
 
     return (
         <div style={{ padding: '8px', minWidth: 300 }}>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 8 }}>
-                <label htmlFor="chart-type">Show:</label>
+            <div style={{ gap: 8, alignItems: 'center', marginBottom: 8 }}>
                 <select id="chart-type" value={type} onChange={e => setType(e.target.value)}>
                     <option value="purchases">Purchases</option>
                     <option value="payments">Payments</option>
                 </select>
-                <button onClick={() => setRefresh(r => r + 1)}>Refresh</button>
+                <Button onClick={() => setRefresh(r => r + 1)} style={{float: "right"}}>↻</Button>
             </div>
 
             <div style={{ width: '100%', height: '280px' }}>
                 {series[0].data.length === 0 ? (
-                    <div style={{ color: 'var(--muted)' }}>{type === 'purchases' ? 'No purchases data yet.' : 'No payments data yet.'}</div>
+                  <div style={{ color: 'var(--muted)' }}>
+                    {type === 'purchases' ? 'No purchases data yet.' : 'No payments data yet.'}
+                  </div>
                 ) : (
-                    <Chart options={options} />
+                  <Chart options={options} />
                 )}
             </div>
         </div>

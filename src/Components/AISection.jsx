@@ -24,7 +24,8 @@ const total_balance = () => {
 }
 
 function genPrompt(info, prompt="") {
-    prompt += "\nAssume that the user knows what a credit score is, don't try and explain it, for example, with an analogy. \nDates are given as 'year-month-day'. Analyse the data according to trends over time.\nOutput the results as a JSON with three parts: the first part is \"summary\", which contains the first paragraph. The second part is \"improvement\", which contains the second paragraph. The third is \"score\", which is an integer value out of 100 acting as an overall rating of the user's management of their credit. It is very important that you ONLY OUTPUT THE JSON, NOT THE RAW TEXT PARAGRAPHS.";
+    prompt += "Assume that the user knows what a credit score is, don't try and overexplain it. Dates are given as 'year-month-day'. Analyse the data according to trends over time. Output the results as a JSON with three parts: the first part is \"summary\", which contains the first paragraph. The second part is \"improvement\", which contains the second paragraph. The third is \"score\", which is an integer value out of 100 acting as an overall rating of the user's management of their credit. It is very important that you ONLY OUTPUT THE JSON, NOT THE RAW TEXT PARAGRAPHS.";
+  prompt += "\nUse the following web pages as references for your information: \n- https://www.citizensadvice.org.uk/debt-and-money/ \n- https://www.moneyhelper.org.uk/en/everyday-money/credit/simple-guide-to-credit-cards \n- https://www.experian.co.uk/consumer/guides/what-affects-score.html \n- https://www.equifax.co.uk/resources/what-we-do/what-is-a-credit-score.html"
 
     prompt += `\n\nIncome: ${info.income} GBP/year
 Credit score: ${info.credit_score[0]} using ${credit_providers[info.credit_score[1]]}
@@ -135,7 +136,8 @@ function AISection({ setScore }) {
 
             {/* Dropdown to select AI model */}
             <div>
-                <label htmlFor="ai-model">Select mode: </label>
+                <label htmlFor="ai-model">Mode: </label>
+                {" "}
                 <select id="ai-model" name="ai-model">
                     <option onClick={() => setPro(false)} value="flash-lite">Speed</option>
                     <option onClick={() => setPro(true)} value="pro">Detailed</option>
@@ -144,7 +146,8 @@ function AISection({ setScore }) {
 
             {/* Dropdown to select AI personality */}
             <div>
-                <label htmlFor="ai-personality">Select personality: </label>
+                <label htmlFor="ai-personality">Personality:</label>
+                {" "}
                 <select id="ai-personality" name="ai-personality">
                     <option onClick={() => setPersonality(0)} value="0">Hacky: Strategist</option>
                     <option onClick={() => setPersonality(1)} value="1">Gohan: Investigator</option>

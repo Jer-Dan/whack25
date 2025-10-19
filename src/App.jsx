@@ -82,7 +82,7 @@ const App = () => {
                         <ScoreWidget score={score} isOnboarding={isOnboarding} handleOnboardingComplete={handleOnboardingComplete} />
                     </div>
 
-                    <div>
+                    <div id='ChartWidget'>
                         <ChartWidget/>
                     </div>
 
