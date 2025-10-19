@@ -24,7 +24,7 @@ const total_balance = () => {
 }
 
 function genPrompt(info, prompt="") {
-    prompt += "\nOutput the results as a JSON with three parts: the first part is \"summary\", which contains the first paragraph. The second part is \"improvement\", which contains the second paragraph. The third is \"score\", which is an integer value out of 100 acting as an overall rating of the user's management of their credit. It is very important that you ONLY OUTPUT THE JSON, NOT THE RAW TEXT PARAGRAPHS.";
+    prompt += "\nDates are given as 'year-month-day'. Analyse the data according to trends over time.\nOutput the results as a JSON with three parts: the first part is \"summary\", which contains the first paragraph. The second part is \"improvement\", which contains the second paragraph. The third is \"score\", which is an integer value out of 100 acting as an overall rating of the user's management of their credit. It is very important that you ONLY OUTPUT THE JSON, NOT THE RAW TEXT PARAGRAPHS.";
 
     prompt += `\n\nIncome: ${info.income} GBP/year
 Credit score: ${info.credit_score[0]} using ${credit_providers[info.credit_score[1]]}
@@ -50,6 +50,7 @@ Cards:`;
         prompt += `\n\t- Payment`
         prompt += `\n\t\t- Amount: ${payments[i].amount} GBP`;
         prompt += `\n\t\t- Card: ${payments[i].method}`;
+        prompt += `\n\t\t- Date: ${payments[i].date}`;
     }
 
     let purchases = info.purchases;
@@ -58,6 +59,7 @@ Cards:`;
         prompt += `\n\t- Payment`
         prompt += `\n\t\t- Amount: ${purchases[i].amount} GBP`;
         prompt += `\n\t\t- Card: ${purchases[i].method}`;
+        prompt += `\n\t\t- Date: ${purchases[i].date}`;
     }
 
     return prompt;
